@@ -1,28 +1,47 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import logo from './logo.svg'
+import Rules from './Rules'
+import './App.css'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+export function App () {
+  const [rules, setRules] = useState(INITIAL)
+  return (
+    <div className="App">
+      <Rules rules={rules}/>
+    </div>
+  )
 }
 
-export default App;
+const INITIAL = [{
+  conditions: {
+    any: [{
+      all: [{
+        fact: 'gameDuration',
+        operator: 'equal',
+        value: 40
+      }, {
+        fact: 'personalFoulCount',
+        operator: 'greaterThanInclusive',
+        value: 5
+      }]
+    }, {
+      all: [{
+        fact: 'gameDuration',
+        operator: 'equal',
+        value: 48
+      }, {
+        fact: 'personalFoulCount',
+        operator: 'greaterThanInclusive',
+        value: 6
+      }]
+    }]
+  },
+  event: {  // define the event to fire when the conditions evaluate truthy
+    type: 'fouledOut',
+    params: {
+      message: 'Player has fouled out!'
+    }
+  }
+}]
+
+export default App

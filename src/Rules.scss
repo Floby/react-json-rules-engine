@@ -1,0 +1,54 @@
+.rjre__condition {
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  padding: 1em;
+  margin: 0.5em;
+}
+
+.rjre__conditions {
+  &[data-type=any] > .rjre__condition {
+    &::before {
+      content: 'OU';
+    }
+  }
+  &[data-type=all] > .rjre__condition {
+    &::before {
+      content: 'ET';
+    }
+  }
+  & > .rjre__condition {
+    position: relative;
+    margin-top: 2.5em;
+    &::before {
+      position: absolute;
+      top: -3em;
+      left: 2em;
+      background: gray;
+      color: white;
+      padding: 0.5em;
+      border-radius: 4em;
+      font-size: 70%;
+    }
+
+    &:first-child {
+      margin-top: 0;
+      &::before {
+        display: none;
+      }
+    }
+  }
+}
+
+.rjre__event {
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  padding: 1em;
+  margin: 0.5em;
+
+  input.type {
+    font-family: monospace;
+  }
+  & > span {
+    margin: 0.1em;
+  }
+}
